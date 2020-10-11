@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Restaurant_Order__c</members>
+        <members>Category__c</members>
+        <members>Dish__c</members>
+        <members>OrderDish__c</members>
+        <name>CustomObject</name>
+    </types>
     <version>48.0</version>
 </Package>

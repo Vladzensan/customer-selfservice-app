@@ -1,0 +1,4 @@
+<template>
+    <c-menu-component if:true={dishes.data} dishes={dishes.data}></c-menu-component>
+    <span if:true={dishes.error}>Error occured: {dishes.error.body.message}</span>
+</template>

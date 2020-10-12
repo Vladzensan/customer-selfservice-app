@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+  }
+  ul {
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px;
+  }
+  li {
+    flex: 0 0 33%;
+    padding: 0.5em;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .round-border {
+    border: 2px solid red;
+    border-radius: 25px;
+  }

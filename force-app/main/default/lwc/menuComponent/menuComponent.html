@@ -1,0 +1,15 @@
+<template >  
+      
+    <lightning-card>
+        <ul class="slds-has-dividers_around-space">
+            <template for:each={dishes} for:item="dish">
+                <li  key={dish.Id} class="round-border">
+                    <c-dish-tile-component dish={dish}> 
+
+                    </c-dish-tile-component>
+                </li>
+            </template>
+         
+        </ul>
+      </lightning-card>
+</template>  

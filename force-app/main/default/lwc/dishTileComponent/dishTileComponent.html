@@ -1,0 +1,22 @@
+<template>
+      <article class="slds-tile slds-media">
+        <div class="slds-media__figure">
+          <span class="slds-avatar slds-avatar_circle slds-avatar_medium">
+            <img alt="" src="https://image.freepik.com/free-vector/delicious-burger-icon-food-beverages_22052-1.jpg" />
+          </span>
+        </div>
+        <div class="slds-media__body">
+          <h3 class="slds-tile__title slds-truncate" >
+            <a href="javascript:void(0);">{dish.Name}</a>
+          </h3>
+          <div class="slds-tile__detail">
+            <dl class="slds-list_horizontal slds-wrap">
+              <dt class="slds-item_label slds-text-color_weak" title="Description">About:</dt>
+              <dd class="slds-item_detail slds-truncate" title="Description">{dish.Description__c}</dd>
+              <dt class="slds-item_label slds-text-color_weak" title="Second Label">Price:</dt>
+              <dd class="slds-item_detail" title="Description for second label">{dish.Price__c}$</dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+</template>

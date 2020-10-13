@@ -16,6 +16,6 @@
   }
 
   .round-border {
-    border: 2px solid red;
-    border-radius: 25px;
+    border: 1px solid silver;
+    border-radius: 10px;
   }

@@ -1,4 +1,17 @@
 <template>
-    <c-menu-component if:true={dishes.data} dishes={dishes.data}></c-menu-component>
-    <span if:true={dishes.error}>Error occured: {dishes.error.body.message}</span>
+    <div class="wrapper">
+        <section class="content">
+            <div class="columns">
+                <main class="main">
+                    <c-menu-component if:true={dishes} dishes={dishes} ondishselected={handleDishSelected}></c-menu-component>
+                </main>
+
+                <aside class="sidebar-second">
+                    <c-dish-info-component selected-dish={selectedDish}></c-dish-info-component>
+                </aside>
+            </div>
+        </section>
+    </div>
+    
+    <span if:true={error}>Error occured: {error.body.message}</span>
 </template>

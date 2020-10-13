@@ -1,0 +1,16 @@
+<template>
+    <lightning-card>
+        <template if:true={selectedDish}>
+            <div class="container">
+                <div class="slds-text-heading_small">{selectedDish.Name}</div>
+                <div class="price">{selectedDish.Price__c}</div>
+                <div class="description">{selectedDish.Description__c}</div>
+                <img class="product-img" src="https://image.freepik.com/free-vector/delicious-burger-icon-food-beverages_22052-1.jpg"></img>
+            
+            </div>
+        </template>
+        <template if:false={selectedDish}>
+            <div class="slds-text-heading_medium">Select a dish</div>
+        </template>
+    </lightning-card>
+</template> 

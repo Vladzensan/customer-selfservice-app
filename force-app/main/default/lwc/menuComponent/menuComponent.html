@@ -1,15 +1,43 @@
-<template >  
-      
-    <lightning-card>
-        <ul class="slds-has-dividers_around-space">
-            <template for:each={dishes} for:item="dish">
-                <li  key={dish.Id} class="round-border">
-                    <c-dish-tile-component dish={dish} onselected={handleSelected}> 
-
-                    </c-dish-tile-component>
-                </li>
+<template>
+    <div class="slds-card slds-p-around_x-small">
+        <template if:true={searchBarIsVisible}>
+            <lightning-input
+                label="Search Key"
+                type="text"
+                onchange={handleSearchKeyChange}
+                class="search-bar"
+            ></lightning-input>
+        </template>
+        <template if:true={dishes.data}>
+            <template if:true={dishes.data.records.length}>
+                <div class="content">
+                    <template
+                        for:each={dishes.data.records}
+                        for:item="dish"
+                    >
+                        <c-dish-tile-component
+                            key={dish.Id}
+                            dish={dish}
+                            onselected={handleSelected}
+                            class="slds-m-around_x-small"
+                        >
+                        </c-dish-tile-component>
+                    </template>
+                </div>
+                <c-paginator
+                    page-number={pageNumber}
+                    page-size={dishes.data.pageSize}
+                    total-item-count={dishes.data.totalItemCount}
+                    onprevious={handlePreviousPage}
+                    onnext={handleNextPage}
+                ></c-paginator>
             </template>
-         
-        </ul>
-      </lightning-card>
-</template>  
+            <template if:false={dishes.data.records.length}>
+                <span>There are no products matching your current selection</span>
+            </template>
+        </template>
+        <template if:true={dishes.error}>
+            <span>{dishes.error.body.message}</span>
+        </template>
+    </div>
+</template>

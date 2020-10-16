@@ -1,0 +1,12 @@
+<template>
+    <lightning-card><lightning-tabset>
+        <lightning-tab label="Info">
+            Order info
+        </lightning-tab>
+        <lightning-tab label="Chosen dishes">
+            <c-order-items-component order-items={orderItems} ondeleted={handleDeletedItem}>
+            </c-order-items-component>
+        </lightning-tab>
+    </lightning-tabset></lightning-card>
+    
+</template>

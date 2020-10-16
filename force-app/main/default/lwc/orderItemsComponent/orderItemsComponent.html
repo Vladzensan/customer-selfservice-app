@@ -1,0 +1,13 @@
+<template>
+
+    <p>Dishes you ordered:</p>
+
+    <lightning-datatable    key-field="Id"
+                            data={orderItems}
+                            columns={columns}
+                            hide-checkbox-column
+                            onrowaction={handleDeleteClick}>
+    </lightning-datatable>
+
+    
+</template>

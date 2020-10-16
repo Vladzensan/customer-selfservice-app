@@ -7,28 +7,28 @@ public with sharing class MenuController {
         @AuraEnabled
         public Decimal maxPrice { get; set; }
         @AuraEnabled
-        public String[] categories { get; set; }
+        public String categoryId { get; set; }
     }
 
     @AuraEnabled(cacheable=true)
     public static PagedResult getDishes(Filters filters, Integer pageNumber) {
-        String key, whereClause = '';
+        String whereClause = '';
         Decimal maxPrice;
-        String[] categories, materials, levels, criteria = new List<String>{};
+        String categoryId;
+        List<String> criteria = new List<String>();
+        
         if (filters != null) {
-            maxPrice = filters.maxPrice;
-
             if (!String.isEmpty(filters.searchKey)) {
-                key = '%' + filters.searchKey + '%';
+                String key = '%' + filters.searchKey + '%';
                 criteria.add('Name LIKE :key');
             }
             if (filters.maxPrice >= 0) {
                 maxPrice = filters.maxPrice;
                 criteria.add('Price__c <= :maxPrice');
             }
-            if (filters.categories != null) {
-                categories = filters.categories;
-                criteria.add('Category__c IN :categories');
+            if (filters.categoryId != null) {
+                categoryId = filters.categoryId;
+                criteria.add('Category__c =:categoryId');
             }
             if (criteria.size() > 0) {
                 whereClause = 'WHERE ' + String.join(criteria, ' AND ');
@@ -42,6 +42,8 @@ public with sharing class MenuController {
         result.totalItemCount = Database.countQuery(
             'SELECT count() FROM Dish__c ' + whereClause
         );
+
+        System.debug(whereClause + '');
         result.records = Database.query(
             'SELECT Name, Price__c, Description__c, Category__c FROM Dish__c ' +
             whereClause +
@@ -49,8 +51,12 @@ public with sharing class MenuController {
             ' ORDER BY Name LIMIT :pageSize OFFSET :offset'
         );
 
-        System.debug(result);
 
         return result;
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Category__c> getCategories(){
+        return [SELECT Name, (SELECT Name FROM ChildCategories__r) FROM Category__c WHERE ParentCategoryId__c=null];
     }
 }

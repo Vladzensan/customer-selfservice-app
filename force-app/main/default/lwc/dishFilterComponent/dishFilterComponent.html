@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="Filters" icon-name="standard:calibration">
+        <div class="slds-m-horizontal_medium">
+            <section>
+                <lightning-slider
+                    label="Max Price"
+                    step="5"
+                    min="0"
+                    max="200"
+                    value={maxPrice}
+                    onchange={handleMaxPriceChange}
+                ></lightning-slider>
+            </section>
+            <section>
+                <h1>Category</h1>
+                    <lightning-radio-group name="radioGroup"
+                    label="Main Categories"
+                    options={mainOptions}
+                    value={mainCategory}
+                    onchange={handleMainCategoryChange}
+                    type="radio"></lightning-radio-group>
+                    <lightning-radio-group name="radioGroup"
+                    label="Child Categories"
+                    options={childOptions}
+                    value={childCategory}
+                    onchange={handleChildCategoryChange}
+                    type="radio"></lightning-radio-group>
+                <template if:true={categories.error}>
+                    <span>
+                       Error: {categories.error.body.message}
+                    </span>
+                </template>
+            </section>
+        </div>
+    </lightning-card>
+</template>

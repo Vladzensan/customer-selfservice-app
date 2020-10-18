@@ -18,12 +18,11 @@ public with sharing class OrderController {
         Id userId = UserInfo.getUserId();
         System.debug('getInfo');
 
-        List<Restaurant_Order__c> orders = [SELECT Id FROM Restaurant_Order__c WHERE Status__c='Open' AND OwnerId =:userId LIMIT 1];
-        // add total price
+        List<Restaurant_Order__c> orders = [SELECT Id, Total_Price__c, Status__c FROM Restaurant_Order__c WHERE Status__c='Open' AND CustomerId__c =:userId LIMIT 1];
 
         Restaurant_Order__c order;
         if(orders.isEmpty()) {
-            order = new Restaurant_Order__c(Status__c='Open', OwnerId=userId);
+            order = new Restaurant_Order__c(Status__c='Open', CustomerId__c=userId, Total_Price__c=0.0);
             insert order;
         } else {
             order = orders[0];
@@ -47,6 +46,45 @@ public with sharing class OrderController {
     public static void addItemsToOrder(String orderId, String dishId, Integer dishCount, string note){
         OrderDish__c item = new OrderDish__c(OrderId__c = orderId, DishId__c= dishId, Dish_Count__c= dishCount, Note__c= note);
         insert item;
+    }
+
+    @AuraEnabled
+    public static void makeOrder(String orderId, String deliveryAddress){
+        List<Restaurant_Order__c> orders = [SELECT Status__c FROM Restaurant_Order__c WHERE Id= :orderId];
+
+        if(orders.isEmpty()) {
+            throw new AuraHandledException('Corrupted order id: ' + orderId);
+        } else {
+            Restaurant_Order__c order = orders[0];
+            order.Status__c = 'Delivery'; // no matter whether we have order delivery or not, status stays the same
+            order.Closed_Date__c = Datetime.now();
+            if(deliveryAddress != null || String.isBlank(deliveryAddress)) {
+                order.Delivery_Address__c = deliveryAddress;
+            } 
+
+            update order;
+        }
+    }
+
+    @AuraEnabled
+    public static List<Restaurant_Order__c> getCurrentUserOrders(){
+        Id userId = UserInfo.getUserId();
+
+        return [SELECT Status__c, Closed_Date__c, Total_Price__c, (SELECT DishId__r.Name FROM OrderDishes__r) FROM Restaurant_Order__c WHERE CustomerId__c = :userId AND (Status__c='Closed' OR Status__c='Delivery')];
+        
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<String> getStatusPicklistValues(){
+        Schema.DescribeFieldResult F = Restaurant_Order__C.Status__c.getDescribe();
+        Schema.sObjectField T = F.getSObjectField();
+        List<PicklistEntry> entries = T.getDescribe().getPicklistValues();
+        List<String> values = new List<String>();
+        for(PicklistEntry entry: entries) {
+            values.add(entry.getLabel());
+        }
+
+        return values;
     }
 
     

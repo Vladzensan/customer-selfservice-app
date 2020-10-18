@@ -45,9 +45,8 @@ public with sharing class MenuController {
 
         System.debug(whereClause + '');
         result.records = Database.query(
-            'SELECT Name, Price__c, Description__c, Category__c FROM Dish__c ' +
+            'SELECT Name, Price__c, Description__c, Category__c, ImageUrl__c FROM Dish__c ' +
             whereClause +
-            ' WITH SECURITY_ENFORCED' +
             ' ORDER BY Name LIMIT :pageSize OFFSET :offset'
         );
 

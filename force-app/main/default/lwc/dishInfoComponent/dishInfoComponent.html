@@ -1,10 +1,9 @@
 <template>
-    <lightning-card>
         <template if:true={selectedDish}>
-                <div class="slds-text-heading_small">{selectedDish.Name}</div>
+                <!-- <div class="slds-text-heading_small">{selectedDish.Name}</div>
                 <div class="price">{selectedDish.Price__c}$</div>
                 <div class="description">{selectedDish.Description__c}</div>
-                <img class="product-img" src="https://image.freepik.com/free-vector/delicious-burger-icon-food-beverages_22052-1.jpg"></img>
+                <img class="product-img" src={selectedDish.ImageUrl__c}></img>
 
                 <div class="slds-form-element">
                     <label class="slds-form-element__label slds-m-right_none" for="default1">Dishes count:</label>
@@ -20,10 +19,57 @@
                   </div>
                   <lightning-textarea name="input1" label="Do you have any wishes about order?" onchange={handleNoteChange} value={notes} ></lightning-textarea>
                   <lightning-button variant="brand" type="submit" label="Add to order" title="Primary action" onclick={handleAddToOrderClick} class="slds-m-left_x-small"></lightning-button>
-            
+             -->
+             <div class="wrapper">
+              <div class="outer">
+                <div class="content animated fadeInLeft">
+                  <h1>{selectedDish.Name}</h1>
+                  <p>{selectedDish.Description__c}</p>
+                  
+                  <div class="slds-form-element">
+                    <label class="slds-form-element__label slds-m-right_none" for="default1">Dishes count:</label>
+                    <div class="slds-form-element__control">
+                      <lightning-button-icon icon-name="utility:ban" class="slds-button slds-button_icon slds-button_icon-small slds-input__button_decrement" title="Decrement counter" onclick={handleDecrement}>
+                        <span class="slds-assistive-text">Decrement counter</span>
+                    </lightning-button-icon>
+                      <input type="number" id="default1" value={dishesCount} readonly class="slds-input slds-input_counter" />
+                      <lightning-button-icon icon-name="utility:new" class="slds-button slds-button_icon slds-button_icon-small slds-input__button_increment" title="Increment counter" onclick={handleIncrement}>
+                        <span class="slds-assistive-text">Increment counter</span>
+                    </lightning-button-icon>
+                    </div>
+                  </div>
+                  <lightning-textarea name="input1" label="Do you have any wishes about order?" onchange={handleNoteChange} value={notes} ></lightning-textarea>
+                  <div class="button">
+                    <a>${selectedDish.Price__c}</a><a class="cart-btn" onclick={handleAddToOrderClick}><i class="cart-icon ion-bag"></i>ADD TO CART</a>
+                  </div>
+                  
+                </div>
+                <img src={selectedDish.ImageUrl__c} width="270px" class="animated fadeInRight">
+              </div>
+             
+            </div>
+
+             <!-- <div class="wrapper">
+              <div class="product-img">
+                <img src={selectedDish.ImageUrl__c} height="420" width="327">
+              </div>
+              <div class="product-info">
+                <div class="product-text">
+                  <h1>{selectedDish.Name}</h1>
+                  <p>{selectedDish.Description__c}</p>
+                </div>
+                <div class="product-price-btn">
+                  <p><span>{selectedDish.Price__c}</span>$</p>
+                  <lightning-textarea name="input1" label="Do you have any wishes about order?" onchange={handleNoteChange} value={notes} ></lightning-textarea>
+                <lightning-button variant="brand" type="submit" label="Add to order" title="Primary action" onclick={handleAddToOrderClick} class="slds-m-left_x-small"></lightning-button>
+                </div>
+              </div>
+            </div> -->
+    
+        
+         
         </template>
         <template if:false={selectedDish}>
             <div class="slds-text-heading_medium">Select a dish</div>
         </template>
-    </lightning-card>
 </template>

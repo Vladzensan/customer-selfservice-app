@@ -115,6 +115,7 @@ export default class OrderInfoComponent extends LightningElement {
                         variant: 'success'
                     })
                 );
+                this.deliveryAddress='';
                 this.fetchCurrentOrder();
             })
             .catch(error => {

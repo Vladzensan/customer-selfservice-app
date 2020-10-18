@@ -28,6 +28,7 @@ export default class DishInfoComponent extends LightningElement {
 
     handleAddToOrderClick(event) {
         var orderItem = {dishCount: this.dishesCount, dishId: this.selectedDish.Id, note: this.notes };
+        this.dishesCount = 1;
         publish(this.messageContext, ORDER_ITEM_ADDED, {
             orderItem: orderItem
         });

@@ -16,7 +16,13 @@ export default class OrderListComponent extends LightningElement {
     filterDish = this.FILTER_ALL;
   
     columns = [
-      {label: 'Date', fieldName: 'Closed_Date__c', hideDefaultActions: true},
+      {label: 'Date', fieldName: 'Closed_Date__c', type:'date',  typeAttributes: {
+        year:"numeric",
+        day:"2-digit",
+        month:"long",
+        hour:"2-digit",
+        minute:"2-digit",
+      }, hideDefaultActions: true}, // formatted according to the user's Salesforce locale
       {label: 'Status', fieldName: 'Status__c', hideDefaultActions: true},
       {label: 'Price', fieldName: 'Total_Price__c', type: 'currency', typeAttributes: { currencyCode: { fieldName: CURRENCY_CODE }}, cellAttributes: { alignment: 'left' }, hideDefaultActions: true}
     ];

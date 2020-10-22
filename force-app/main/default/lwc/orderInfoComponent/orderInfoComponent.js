@@ -8,6 +8,13 @@ import makeOrder from '@salesforce/apex/OrderController.makeOrder'
 import addItemsToOrder from '@salesforce/apex/OrderController.addItemsToOrder';
 import ORDER_ITEM_ADDED from '@salesforce/messageChannel/OrderItemAdded__c';
 
+// MESSAGES
+import ORDER_UPDATE_SUCCESS from '@salesforce/label/c.OrderUpdateSuccess';
+import ORDER_UPDATE_FAILURE from '@salesforce/label/c.OrderUpdateFailure';
+import MAKE_ORDER_SUCCESS from '@salesforce/label/c.MakeOrderSuccess';
+import MAKE_ORDER_NO_ITEMS  from '@salesforce/label/c.MakeOrderNoItems';
+
+
 export default class OrderInfoComponent extends LightningElement {
     @track order;
     @track error;
@@ -63,7 +70,7 @@ export default class OrderInfoComponent extends LightningElement {
         .then(result => {
             const event = new ShowToastEvent({
                 title: 'Success',
-                message: 'Dish successfully added to order',
+                message: ORDER_UPDATE_SUCCESS,
                 variant: 'success'
                 
             });
@@ -75,7 +82,7 @@ export default class OrderInfoComponent extends LightningElement {
             this.error = error;
             const event = new ShowToastEvent({
                 title: 'Failure',
-                message: 'Error occurred while adding dish to order',
+                message: ORDER_UPDATE_FAILURE,
                 variant: 'error'
             });
             this.dispatchEvent(event);
@@ -88,7 +95,7 @@ export default class OrderInfoComponent extends LightningElement {
             this.dispatchEvent(
                 new ShowToastEvent({
                     title: 'Success',
-                    message: 'Order Item deleted',
+                    message: ORDER_UPDATE_SUCCESS,
                     variant: 'success'
                 })
             );
@@ -111,7 +118,7 @@ export default class OrderInfoComponent extends LightningElement {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Success',
-                        message: 'Thank you! Order is processed!',
+                        message: MAKE_ORDER_SUCCESS,
                         variant: 'success'
                     })
                 );
@@ -131,7 +138,7 @@ export default class OrderInfoComponent extends LightningElement {
         this.dispatchEvent(
             new ShowToastEvent({
                 title: 'Failure',
-                message: 'To make an order you have to add at least one item in it',
+                message: MAKE_ORDER_NO_ITEMS,
                 variant: 'error'
             })
         );

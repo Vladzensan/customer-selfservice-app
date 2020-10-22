@@ -16,11 +16,9 @@ export default class OrderFiltersComponent extends LightningElement {
     @track error;
   
     connectedCallback() {
-try {
       getStatusPicklistValues() .then(result => {
             this.error=undefined;
             let options = [{label:'--All--', value:'--All--'}];
-            console.log('res'+JSON.stringify(result));
             for (var val in result) {
               options.push({
                     label : result[val],
@@ -29,8 +27,6 @@ try {
             }
 
             this.statusValues = options;
-            console.log('data'+JSON.stringify(result));
-            console.log('pr'+JSON.stringify(this.statusValues));
             this.selectedStatus = '--All--';
           })
           .catch(error => {
@@ -38,9 +34,6 @@ try {
             console.log(error);
           });
 
-        }catch(e) {
-          console.log('few' + e);
-        }
       this.buildDateArray();
       this.buildDishArray();
     }

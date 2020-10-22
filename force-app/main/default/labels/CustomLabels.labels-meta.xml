@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>MakeOrderNoItems</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>No items for order processing</shortDescription>
+        <value>To make an order you have to add at least one item in it</value>
+    </labels>
+    <labels>
+        <fullName>MakeOrderSuccess</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Make order success</shortDescription>
+        <value>Thank you! Order is processed!</value>
+    </labels>
+    <labels>
+        <fullName>OrderUpdateFailure</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order update failure</shortDescription>
+        <value>Error occurred while updating order</value>
+    </labels>
+    <labels>
+        <fullName>OrderUpdateSuccess</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order update success</shortDescription>
+        <value>Order successfully updated</value>
+    </labels>
+</CustomLabels>

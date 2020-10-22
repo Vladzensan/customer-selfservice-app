@@ -15,7 +15,7 @@
               <dt class="slds-item_label slds-text-color_weak" title="Description">About:</dt>
               <dd class="slds-item_detail slds-truncate" title="Description">{dish.Description__c}</dd>
               <dt class="slds-item_label slds-text-color_weak" title="Second Label">Price:</dt>
-              <dd class="slds-item_detail" title="Description for second label">{dish.Price__c}$</dd>
+              <dd class="slds-item_detail" title="Description for second label"><lightning-formatted-number value={dish.Price__c} format-style="currency" currency-code={CURRENCY_CODE}></lightning-formatted-number></dd>
             </dl>
           </div>
         </div>

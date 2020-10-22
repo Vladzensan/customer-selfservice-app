@@ -1,5 +1,6 @@
 import { LightningElement, api, wire } from 'lwc';
 import { publish, subscribe, MessageContext, unsubscribe } from 'lightning/messageService';
+import CURRENCY_CODE from '@salesforce/i18n/currency';
 import DISH_SELECTED_MESSAGE from '@salesforce/messageChannel/DishSelected__c';
 import ORDER_ITEM_ADDED from '@salesforce/messageChannel/OrderItemAdded__c';
 

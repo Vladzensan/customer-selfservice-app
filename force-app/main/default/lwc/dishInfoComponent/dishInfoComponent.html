@@ -40,7 +40,7 @@
                   </div>
                   <lightning-textarea name="input1" label="Do you have any wishes about order?" onchange={handleNoteChange} value={notes} ></lightning-textarea>
                   <div class="button">
-                    <a>${selectedDish.Price__c}</a><a class="cart-btn" onclick={handleAddToOrderClick}><i class="cart-icon ion-bag"></i>ADD TO CART</a>
+                    <a><lightning-formatted-number value={selectedDish.Price__c} format-style="currency" currency-code={CURRENCY_CODE}></lightning-formatted-number></a><a class="cart-btn" onclick={handleAddToOrderClick}><i class="cart-icon ion-bag"></i>ADD TO CART</a>
                   </div>
                   
                 </div>

@@ -1,5 +1,6 @@
 import { LightningElement, track } from 'lwc';
 import getCurrentUserOrders from '@salesforce/apex/OrderController.getCurrentUserOrders'
+import CURRENCY_CODE from '@salesforce/i18n/currency';
 
 export default class OrderListComponent extends LightningElement {
     FILTER_ALL = '--All--';
@@ -17,7 +18,7 @@ export default class OrderListComponent extends LightningElement {
     columns = [
       {label: 'Date', fieldName: 'Closed_Date__c', hideDefaultActions: true},
       {label: 'Status', fieldName: 'Status__c', hideDefaultActions: true},
-      {label: 'Price', fieldName: 'Total_Price__c', type: 'currency', hideDefaultActions: true}
+      {label: 'Price', fieldName: 'Total_Price__c', type: 'currency', typeAttributes: { currencyCode: { fieldName: CURRENCY_CODE }}, cellAttributes: { alignment: 'left' }, hideDefaultActions: true}
     ];
   
     connectedCallback() {

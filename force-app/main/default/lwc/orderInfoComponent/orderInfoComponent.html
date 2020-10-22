@@ -10,7 +10,9 @@
                   <div class="slds-tile__detail">
                     <dl class="slds-list_horizontal slds-wrap">
                       <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Price">Total Price:</dt>
-                      <dd class="slds-item_detail slds-truncate" title="Description for first label">{order.Total_Price__c}$</dd>
+                      <dd class="slds-item_detail slds-truncate" title="Description for first label">
+                        <lightning-formatted-number value={order.Total_Price__c} format-style="currency" currency-code={CURRENCY_CODE}></lightning-formatted-number>
+                      </dd>
                       <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Status">Status:</dt>
                       <dd class="slds-item_detail slds-truncate" title="Description for second label">{order.Status__c}</dd>
                       <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Delivery">Delivery:</dt>

@@ -7,6 +7,7 @@ import getItemsByOrderId from '@salesforce/apex/OrderController.getItemsById'
 import makeOrder from '@salesforce/apex/OrderController.makeOrder'
 import addItemsToOrder from '@salesforce/apex/OrderController.addItemsToOrder';
 import ORDER_ITEM_ADDED from '@salesforce/messageChannel/OrderItemAdded__c';
+import CURRENCY_CODE from '@salesforce/i18n/currency';
 
 // MESSAGES
 import ORDER_UPDATE_SUCCESS from '@salesforce/label/c.OrderUpdateSuccess';

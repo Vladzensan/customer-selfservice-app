@@ -1,4 +1,5 @@
 import { LightningElement, api } from 'lwc';
+import CURRENCY_CODE from '@salesforce/i18n/currency';
 
 export default class DishTileComponent extends LightningElement {
     @api dish;
